@@ -45,7 +45,7 @@ npm install
 ### 2. Run on iOS (macOS only)
 
 ```bash
-# Install iOS dependencies
+# Install iOS dependencies (CocoaPods)
 cd ios
 pod install
 cd ..
@@ -56,6 +56,8 @@ npm run ios
 # Or specify a simulator
 npx react-native run-ios --simulator="iPhone 15"
 ```
+
+**Note:** The Xcode project (`RNDemoApp.xcodeproj`) is included in the repository. After running `pod install`, CocoaPods will create a `.xcworkspace` file - **always open the workspace file** in Xcode, not the project file directly.
 
 ### 3. Run on Android
 
