@@ -138,6 +138,7 @@ npm test           # Run tests
 
 | Issue | Quick Solution |
 |-------|----------------|
+| Podfile error: `FlipperConfiguration` | Outdated Podfile - see FlipperConfiguration Error section |
 | Podfile error: `@react-native-community/cli-platform-ios` | Remove old require line - see iOS Build Fails section |
 | CocoaPods checksum error | `cd ios && ./fix-pods.sh` |
 | Metro bundler cache | `npm start -- --reset-cache` |
@@ -225,6 +226,17 @@ cd ..
 ### Xcode Configuration Warnings
 
 If you see warnings about unknown UUIDs for base_configuration_reference, these are normal during the first `pod install` and will be resolved once CocoaPods generates its configuration files.
+
+### FlipperConfiguration Error
+
+If you see an error like `uninitialized constant Pod::Podfile::FlipperConfiguration`, this means your Podfile contains outdated Flipper-related code. **Flipper was removed in React Native 0.74+**. 
+
+The Podfile in this repository has been updated to remove all Flipper dependencies. If you're upgrading from an older project:
+- Remove all `flipper_config` lines
+- Remove `FlipperConfiguration` references  
+- Remove the `__apply_Xcode_12_5_M1_post_install_workaround` call (deprecated)
+
+For debugging, use React Native's built-in DevTools or Reactotron instead of Flipper.
 
 ### Android Build Fails
 
