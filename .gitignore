@@ -38,3 +38,10 @@ Backup[ ]of[ ]*.numbers/
 
 # Merge artefacts
 *.orig
+
+# React Native / Node
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+*.tsbuildinfo

@@ -7,6 +7,29 @@ DSLCalendar view is an iOS control that displays a calendar similar to the syste
 
 ----
 
+## React Native NLPCalendar Component
+
+This repository now includes a React Native component that parses natural language text and displays calendar events. See [react-native/README.md](react-native/README.md) for full documentation.
+
+### Quick Start
+
+```tsx
+import { NLPCalendar } from 'dslcalendarview-react-native';
+
+<NLPCalendar text="Meeting on January 15; Call tomorrow at 3pm" />
+```
+
+**Features:**
+- Parse natural language date expressions
+- Support for relative dates (today, tomorrow, next week)
+- Month/day format and date ranges
+- Strict TypeScript with no `any` types
+- Modular architecture (Input → Parser → Renderer)
+
+----
+
+## iOS Components
+
 ## DSLCalendarMonthSelectorView
 
 DSLCalendarMonthSelectorView is the view displayed above the current month. It contains a label showing the current month and year, labels for the days of the week and buttons to allow the user to navigate to the previous or next month.
