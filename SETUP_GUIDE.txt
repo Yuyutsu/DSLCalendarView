@@ -1,0 +1,98 @@
+╔══════════════════════════════════════════════════════════════╗
+║           HOW TO RUN NLPCALENDAR LOCALLY                     ║
+╚══════════════════════════════════════════════════════════════╝
+
+This is a COMPONENT LIBRARY, not a full app.
+To run it, you need to create a React Native app first.
+
+┌──────────────────────────────────────────────────────────────┐
+│ OPTION 1: EXPO (EASIEST - RECOMMENDED FOR TESTING)          │
+└──────────────────────────────────────────────────────────────┘
+
+  ✅ No Xcode or Android Studio needed
+  ✅ Test on your phone instantly
+  ✅ Works on macOS, Windows, and Linux
+
+  Quick Setup:
+  
+  1. cd demo-app-template
+  2. ./setup-demo.sh
+  3. Choose option 1 (Expo)
+  4. npx expo start
+  5. Scan QR code with Expo Go app
+  
+  📖 Full guide: EXPO_QUICKSTART.md
+
+┌──────────────────────────────────────────────────────────────┐
+│ OPTION 2: REACT NATIVE CLI (FULL NATIVE)                    │
+└──────────────────────────────────────────────────────────────┘
+
+  ✅ Full iOS and Android support
+  ✅ Production-ready
+  ⚠️  Requires Xcode (iOS) and Android Studio
+
+  Quick Setup:
+  
+  1. cd demo-app-template
+  2. ./setup-demo.sh
+  3. Choose option 2 (React Native CLI)
+  4. npm run ios (or npm run android)
+  
+  📖 Full guide: GETTING_STARTED.md
+
+┌──────────────────────────────────────────────────────────────┐
+│ OPTION 3: ADD TO EXISTING APP                               │
+└──────────────────────────────────────────────────────────────┘
+
+  Already have a React Native app?
+  
+  1. Copy source:
+     mkdir -p src/nlp-calendar
+     cp -r react-native/src/* src/nlp-calendar/
+  
+  2. Import and use:
+     import { parseNaturalLanguage } from './src/nlp-calendar/parser/nlpParser';
+
+┌──────────────────────────────────────────────────────────────┐
+│ QUICK ANSWERS                                                │
+└──────────────────────────────────────────────────────────────┘
+
+  Q: Where are android/ios folders?
+  A: They're created when you run: npx react-native init YourApp
+  
+  Q: Can I see a demo without setting up?
+  A: Yes! Use Expo - takes 5 minutes, no native tools needed
+  
+  Q: What if I get errors?
+  A: Check FAQ.md for common issues and solutions
+
+┌──────────────────────────────────────────────────────────────┐
+│ DOCUMENTATION                                                │
+└──────────────────────────────────────────────────────────────┘
+
+  📖 GETTING_STARTED.md  - Full React Native CLI setup
+  ⚡ EXPO_QUICKSTART.md  - Expo setup (easiest)
+  ❓ FAQ.md              - Common questions & troubleshooting
+  📚 react-native/README.md - Component API docs
+  💡 demo-app-template/  - Ready-to-use app templates
+
+┌──────────────────────────────────────────────────────────────┐
+│ EXAMPLE NATURAL LANGUAGE INPUTS                              │
+└──────────────────────────────────────────────────────────────┘
+
+  Try these in the demo app:
+  
+  • Meeting tomorrow at 3pm
+  • Call John on January 15
+  • Vacation from June 1 to June 10
+  • Dentist next Monday
+  • Team standup today
+  • Conference next week
+
+┌──────────────────────────────────────────────────────────────┐
+│ NEED HELP?                                                   │
+└──────────────────────────────────────────────────────────────┘
+
+  • Read the FAQ: FAQ.md
+  • Check guides in root directory
+  • Open an issue on GitHub

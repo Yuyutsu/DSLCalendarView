@@ -9,19 +9,36 @@ DSLCalendar view is an iOS control that displays a calendar similar to the syste
 
 ## React Native NLPCalendar Component
 
-This repository now includes a React Native component that parses natural language text and displays calendar events. See [react-native/README.md](react-native/README.md) for full documentation.
+This repository now includes a React Native component that parses natural language text and displays calendar events.
 
-### 🚀 How to Run Locally
+### ⚡ Quick Start - Run the Demo
 
-**Option 1: Quick Start with Expo (Recommended for Testing)**
-- No Xcode or Android Studio needed
-- Test on your phone with Expo Go app
-- See [EXPO_QUICKSTART.md](EXPO_QUICKSTART.md) for detailed instructions
+**Want to try it immediately?** Run this:
 
-**Option 2: Full React Native Setup**
-- Complete native development environment
-- Full iOS and Android support
-- See [GETTING_STARTED.md](GETTING_STARTED.md) for detailed instructions
+```bash
+cd demo-app-template
+./setup-demo.sh
+# Choose option 1 (Expo - easiest, no native tools needed)
+```
+
+Then `npx expo start` and scan the QR code with your phone!
+
+### 📖 Complete Setup Guides
+
+- **🚀 [SETUP_GUIDE.txt](SETUP_GUIDE.txt)** - Quick reference for all options
+- **⚡ [EXPO_QUICKSTART.md](EXPO_QUICKSTART.md)** - Easiest way (no Xcode/Android Studio)
+- **📱 [GETTING_STARTED.md](GETTING_STARTED.md)** - Full React Native CLI setup
+- **❓ [FAQ.md](FAQ.md)** - Common questions & troubleshooting
+
+### 🤔 Where are android/ios folders?
+
+This is a **component library**, not a complete app. Android/iOS folders are created when you initialize a React Native app using:
+
+```bash
+npx react-native init YourAppName
+```
+
+Then you integrate this component. See the guides above for step-by-step instructions.
 
 ### Quick Start Code
 
