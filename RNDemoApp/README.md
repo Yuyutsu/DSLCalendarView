@@ -138,6 +138,7 @@ npm test           # Run tests
 
 | Issue | Quick Solution |
 |-------|----------------|
+| **iOS signing error: "requires a development team"** | Open Xcode, select project, add your Team in Signing |
 | Podfile error: `FlipperConfiguration` | Outdated Podfile - see FlipperConfiguration Error section |
 | Podfile error: `@react-native-community/cli-platform-ios` | Remove old require line - see iOS Build Fails section |
 | CocoaPods checksum error | `cd ios && ./fix-pods.sh` |
@@ -237,6 +238,51 @@ The Podfile in this repository has been updated to remove all Flipper dependenci
 - Remove the `__apply_Xcode_12_5_M1_post_install_workaround` call (deprecated)
 
 For debugging, use React Native's built-in DevTools or Reactotron instead of Flipper.
+
+### iOS Code Signing Error
+
+**Error:** `Signing for "RNDemoApp" requires a development team`
+
+**Solution:**
+
+The project is configured with automatic code signing, but you need to set your Apple Developer Team ID:
+
+1. **Option 1: Using Xcode (Recommended)**
+   ```bash
+   # Open the project in Xcode
+   cd ios
+   open RNDemoApp.xcworkspace  # Use .xcworkspace after pod install
+   ```
+   - Select `RNDemoApp` project in the left panel
+   - Select the `RNDemoApp` target
+   - Go to "Signing & Capabilities" tab
+   - Check "Automatically manage signing"
+   - Select your Team from the dropdown
+
+2. **Option 2: Command Line**
+   ```bash
+   # Edit the project file to add your Team ID
+   # Open RNDemoApp.xcodeproj/project.pbxproj
+   # Find DEVELOPMENT_TEAM = ""; 
+   # Replace with DEVELOPMENT_TEAM = "YOUR_TEAM_ID";
+   ```
+
+3. **Option 3: Simulator Only (No Signing Required)**
+   ```bash
+   # Run directly on simulator (bypasses signing)
+   npm run ios -- --simulator="iPhone 15"
+   ```
+
+**Note:** The project is pre-configured with:
+- `CODE_SIGN_STYLE = Automatic`
+- `DEVELOPMENT_TEAM = ""` (empty, you fill it in)
+- `IPHONEOS_DEPLOYMENT_TARGET = 13.0`
+
+**Don't have an Apple Developer Account?**
+- You can use a free Apple ID for development
+- Open Xcode → Preferences → Accounts → Add your Apple ID
+- Xcode will create a Personal Team for you
+- This works for simulator and testing on your own devices
 
 ### Android Build Fails
 
