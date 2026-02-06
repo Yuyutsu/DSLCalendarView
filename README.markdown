@@ -11,7 +11,19 @@ DSLCalendar view is an iOS control that displays a calendar similar to the syste
 
 This repository now includes a React Native component that parses natural language text and displays calendar events. See [react-native/README.md](react-native/README.md) for full documentation.
 
-### Quick Start
+### 🚀 How to Run Locally
+
+**Option 1: Quick Start with Expo (Recommended for Testing)**
+- No Xcode or Android Studio needed
+- Test on your phone with Expo Go app
+- See [EXPO_QUICKSTART.md](EXPO_QUICKSTART.md) for detailed instructions
+
+**Option 2: Full React Native Setup**
+- Complete native development environment
+- Full iOS and Android support
+- See [GETTING_STARTED.md](GETTING_STARTED.md) for detailed instructions
+
+### Quick Start Code
 
 ```tsx
 import { NLPCalendar } from 'dslcalendarview-react-native';
@@ -25,6 +37,23 @@ import { NLPCalendar } from 'dslcalendarview-react-native';
 - Month/day format and date ranges
 - Strict TypeScript with no `any` types
 - Modular architecture (Input → Parser → Renderer)
+
+### Example Natural Language Inputs
+
+```
+Meeting tomorrow at 3pm
+Call John on January 15
+Vacation from June 1 to June 10
+Dentist next Monday
+Conference next week
+```
+
+### Documentation
+
+- 📖 [Component API Documentation](react-native/README.md)
+- 🚀 [Getting Started Guide](GETTING_STARTED.md)
+- ⚡ [Expo Quick Start](EXPO_QUICKSTART.md)
+- 💡 [Example Code](react-native/example/ExampleApp.tsx)
 
 ----
 

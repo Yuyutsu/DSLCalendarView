@@ -39,11 +39,65 @@ Input Layer → NLP Parsing Layer → Calendar Rendering Layer
 
 ## Installation
 
+This is a component library. To use it in your React Native app:
+
+### Option 1: Copy Source (Recommended for Development)
+
 ```bash
-npm install
-# or
-yarn install
+# In your React Native project
+mkdir -p src/nlp-calendar
+cp -r /path/to/DSLCalendarView/react-native/src/* src/nlp-calendar/
 ```
+
+Then import:
+```tsx
+import { parseNaturalLanguage } from './src/nlp-calendar/parser/nlpParser';
+import { EventList } from './src/nlp-calendar/components/EventList';
+```
+
+### Option 2: Local Package Link
+
+```bash
+# In DSLCalendarView directory
+npm link
+
+# In your React Native project
+npm link dslcalendarview-react-native
+```
+
+### Option 3: Install from Repository
+
+```bash
+npm install git+https://github.com/Yuyutsu/DSLCalendarView.git
+```
+
+## Quick Start - Run Demo App
+
+Want to see it in action first? We have setup scripts ready!
+
+### Easiest: Expo Demo (No Xcode/Android Studio needed)
+
+```bash
+cd demo-app-template
+./setup-demo.sh
+```
+
+Choose option 1 for Expo, and you'll have a working demo in minutes!
+
+### Full Native: React Native CLI Demo
+
+```bash
+cd demo-app-template
+./setup-demo.sh
+```
+
+Choose option 2 for full React Native setup with iOS/Android support.
+
+### Manual Setup
+
+See the detailed guides:
+- [GETTING_STARTED.md](../GETTING_STARTED.md) - Full React Native CLI setup
+- [EXPO_QUICKSTART.md](../EXPO_QUICKSTART.md) - Expo setup (easiest)
 
 ## Usage
 
