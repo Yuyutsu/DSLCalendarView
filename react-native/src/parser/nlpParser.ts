@@ -79,9 +79,13 @@ function parseRelativeDate(text: string): Date {
   if (dayMatch) {
     const targetDay = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].indexOf(dayMatch[1]);
     const currentDay = now.getDay();
-    const daysUntil = targetDay >= currentDay ? targetDay - currentDay : 7 - currentDay + targetDay;
+    // Always go to the next occurrence (at least 1 day ahead)
+    let daysUntil = targetDay - currentDay;
+    if (daysUntil <= 0) {
+      daysUntil += 7;
+    }
     const nextDayDate = new Date(now);
-    nextDayDate.setDate(nextDayDate.getDate() + daysUntil + (daysUntil === 0 ? 7 : 0));
+    nextDayDate.setDate(nextDayDate.getDate() + daysUntil);
     return nextDayDate;
   }
 
@@ -109,7 +113,7 @@ function extractTitle(text: string): string {
  * Generate unique ID for event
  */
 function generateId(): string {
-  return `event_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  return `event_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
 }
 
 /**

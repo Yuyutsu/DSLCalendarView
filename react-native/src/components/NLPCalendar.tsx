@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NLPCalendarProps } from '../types';
 import { parseNaturalLanguage } from '../parser/nlpParser';
@@ -26,6 +26,19 @@ export const NLPCalendar: React.FC<NLPCalendarProps> = ({
   onEventsChange,
   onError,
 }) => {
+  // Store latest callbacks in refs to avoid dependency issues
+  const onEventsChangeRef = useRef(onEventsChange);
+  const onErrorRef = useRef(onError);
+
+  // Keep refs up to date
+  useEffect(() => {
+    onEventsChangeRef.current = onEventsChange;
+  }, [onEventsChange]);
+
+  useEffect(() => {
+    onErrorRef.current = onError;
+  }, [onError]);
+
   // Parse text using pure function - memoized for performance
   const parseResult = useMemo(() => {
     return parseNaturalLanguage(text);
@@ -35,17 +48,17 @@ export const NLPCalendar: React.FC<NLPCalendarProps> = ({
 
   // Notify parent component of events change
   useEffect(() => {
-    if (onEventsChange) {
-      onEventsChange(events);
+    if (onEventsChangeRef.current) {
+      onEventsChangeRef.current(events);
     }
-  }, [events, onEventsChange]);
+  }, [events]);
 
   // Notify parent component of errors
   useEffect(() => {
-    if (onError && errors.length > 0) {
-      onError(errors);
+    if (onErrorRef.current && errors.length > 0) {
+      onErrorRef.current(errors);
     }
-  }, [errors, onError]);
+  }, [errors]);
 
   return (
     <View style={styles.container}>
