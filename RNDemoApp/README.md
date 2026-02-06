@@ -59,6 +59,13 @@ npx react-native run-ios --simulator="iPhone 15"
 
 **Note:** The Xcode project (`RNDemoApp.xcodeproj`) is included in the repository. After running `pod install`, CocoaPods will create a `.xcworkspace` file - **always open the workspace file** in Xcode, not the project file directly.
 
+**If `pod install` fails with checksum errors:** Use the helper script:
+```bash
+cd ios
+./fix-pods.sh
+```
+See the [Troubleshooting](#-troubleshooting) section below for more details.
+
 ### 3. Run on Android
 
 ```bash
@@ -127,6 +134,15 @@ npm test           # Run tests
 
 ## 🐛 Troubleshooting
 
+### Quick Fixes
+
+| Issue | Quick Solution |
+|-------|----------------|
+| CocoaPods checksum error | `cd ios && ./fix-pods.sh` |
+| Metro bundler cache | `npm start -- --reset-cache` |
+| iOS build fails | `cd ios && rm -rf Pods Podfile.lock && pod install` |
+| Android build fails | `cd android && ./gradlew clean` |
+
 ### Metro Bundler Issues
 
 ```bash
@@ -146,8 +162,14 @@ cd ..
 
 ### CocoaPods Checksum Errors (e.g., boost library)
 
-If you encounter checksum verification errors during `pod install`:
+If you encounter checksum verification errors during `pod install` (such as the boost library error):
 
+```
+[!] Error installing boost
+Verification checksum was incorrect, expected ..., got ...
+```
+
+**Quick Fix:**
 ```bash
 # Clear CocoaPods cache and retry
 cd ios
@@ -156,7 +178,40 @@ pod install --repo-update
 cd ..
 ```
 
-If the issue persists, it may be a temporary CDN issue. Wait a few minutes and try again, or use a different network connection.
+**If the issue persists, try these steps in order:**
+
+1. **Clean specific pod cache:**
+   ```bash
+   cd ios
+   pod cache clean boost --all
+   pod install
+   ```
+
+2. **Use verbose mode to see what's happening:**
+   ```bash
+   pod install --verbose
+   ```
+
+3. **Try with CDN disabled (uses git instead):**
+   ```bash
+   # Add to top of Podfile temporarily:
+   # source 'https://github.com/CocoaPods/Specs.git'
+   pod install
+   ```
+
+4. **Wait and retry:** This is often a temporary CDN caching issue. Wait 10-15 minutes and try again.
+
+5. **Try a different network:** Switch between WiFi/Ethernet or use a VPN.
+
+**For CI/CD Environments:**
+- Add retry logic: `pod install || (pod cache clean --all && pod install --repo-update)`
+- Consider caching the Pods directory but not the CocoaPods cache
+- Use `--verbose` flag to get better error logs
+
+**Root Cause:** This error occurs when the downloaded boost library file doesn't match the expected checksum, usually due to:
+- CDN serving a corrupted/cached version
+- Network interruption during download  
+- CocoaPods cache containing corrupted files
 
 ### Xcode Configuration Warnings
 
