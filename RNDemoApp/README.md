@@ -26,6 +26,7 @@ This is a **full React Native CLI project** with android and ios folders, ready 
 - Xcode (latest version)
 - CocoaPods: `sudo gem install cocoapods`
 - iOS Simulator (included with Xcode)
+- **Minimum iOS version:** 15.1+ (for React Native 0.83)
 
 ### For Android
 - Android Studio
@@ -139,6 +140,7 @@ npm test           # Run tests
 | Issue | Quick Solution |
 |-------|----------------|
 | **iOS signing error: "requires a development team"** | Open Xcode, select project, add your Team in Signing |
+| **CocoaPods deployment target error** | React Native 0.83 requires iOS 15.1+ - see Deployment Target Error section |
 | Podfile error: `FlipperConfiguration` | Outdated Podfile - see FlipperConfiguration Error section |
 | Podfile error: `@react-native-community/cli-platform-ios` | Remove old require line - see iOS Build Fails section |
 | CocoaPods checksum error | `cd ios && ./fix-pods.sh` |
@@ -227,6 +229,28 @@ cd ..
 ### Xcode Configuration Warnings
 
 If you see warnings about unknown UUIDs for base_configuration_reference, these are normal during the first `pod install` and will be resolved once CocoaPods generates its configuration files.
+
+### CocoaPods Deployment Target Error
+
+**Error:** `CocoaPods could not find compatible versions for pod "React-FabricComponents/components/unimplementedview"... they required a higher minimum deployment target`
+
+**Root Cause:** React Native 0.83.1 requires **iOS 15.1** as the minimum deployment target. This is significantly higher than previous versions (which supported iOS 13.4).
+
+**Solution:** The Podfile and Xcode project in this repository are already configured with iOS 15.1. If you're seeing this error:
+
+1. **Verify Podfile:** Check that it specifies `platform :ios, '15.1'`
+2. **Verify Xcode project:** Open the project in Xcode and ensure:
+   - Project → Build Settings → iOS Deployment Target = 15.1
+   - Target → Build Settings → iOS Deployment Target = 15.1
+
+**Supported Devices:** iOS 15.1+ includes:
+- iPhone 6s and newer
+- iPad (5th generation) and newer
+- iPad Pro (all models)
+- iPad Air 2 and newer
+- iPad mini 4 and newer
+
+This aligns with Apple's current support policy and React Native 0.83's requirements.
 
 ### FlipperConfiguration Error
 
