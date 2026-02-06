@@ -144,6 +144,24 @@ pod install
 cd ..
 ```
 
+### CocoaPods Checksum Errors (e.g., boost library)
+
+If you encounter checksum verification errors during `pod install`:
+
+```bash
+# Clear CocoaPods cache and retry
+cd ios
+pod cache clean --all
+pod install --repo-update
+cd ..
+```
+
+If the issue persists, it may be a temporary CDN issue. Wait a few minutes and try again, or use a different network connection.
+
+### Xcode Configuration Warnings
+
+If you see warnings about unknown UUIDs for base_configuration_reference, these are normal during the first `pod install` and will be resolved once CocoaPods generates its configuration files.
+
 ### Android Build Fails
 
 ```bash
