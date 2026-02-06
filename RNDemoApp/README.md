@@ -138,6 +138,7 @@ npm test           # Run tests
 
 | Issue | Quick Solution |
 |-------|----------------|
+| Podfile error: `@react-native-community/cli-platform-ios` | Remove old require line - see iOS Build Fails section |
 | CocoaPods checksum error | `cd ios && ./fix-pods.sh` |
 | Metro bundler cache | `npm start -- --reset-cache` |
 | iOS build fails | `cd ios && rm -rf Pods Podfile.lock && pod install` |
@@ -159,6 +160,14 @@ rm -rf Pods Podfile.lock
 pod install
 cd ..
 ```
+
+**Note:** If you see an error like `cannot load such file -- @react-native-community/cli-platform-ios/native_modules`, make sure your Podfile is updated for React Native 0.83+. The old `@react-native-community/cli-platform-ios` package has been replaced. Your Podfile should only have:
+
+```ruby
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+```
+
+The `native_modules` functionality is now handled automatically by `prepare_react_native_project!`.
 
 ### CocoaPods Checksum Errors (e.g., boost library)
 
