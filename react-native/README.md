@@ -208,3 +208,5 @@ react-native/
 ## License
 
 BSD-2-Clause (same as the parent DSLCalendarView project)
+
+See the full license text in the parent repository's [README.markdown](../README.markdown).
