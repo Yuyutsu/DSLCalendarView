@@ -11,7 +11,25 @@ DSLCalendar view is an iOS control that displays a calendar similar to the syste
 
 This repository now includes a React Native component that parses natural language text and displays calendar events.
 
-### ⚡ Quick Start - Run the Demo
+### 🎯 Complete React Native CLI App - Ready to Run!
+
+**NEW!** We now have a complete React Native CLI app with android/ios folders ready to run:
+
+```bash
+cd RNDemoApp
+npm install
+
+# For iOS (macOS only)
+cd ios && pod install && cd ..
+npm run ios
+
+# For Android
+npm run android
+```
+
+See [RNDemoApp/README.md](RNDemoApp/README.md) for full instructions!
+
+### ⚡ Quick Start - Other Options
 
 **Want to try it immediately?** Run this:
 

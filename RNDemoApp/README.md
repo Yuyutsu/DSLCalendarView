@@ -1,0 +1,238 @@
+# NLP Calendar Demo - React Native CLI App
+
+A complete, ready-to-run React Native CLI application demonstrating the NLPCalendar component.
+
+## 🎯 What's This?
+
+This is a **full React Native CLI project** with android and ios folders, ready to run on your machine. It demonstrates the NLPCalendar component that parses natural language text into calendar events.
+
+## ✨ Features
+
+- 📱 Complete React Native CLI app structure
+- 🤖 Android support (with Gradle configuration)
+- 🍎 iOS support (with CocoaPods configuration)
+- 📅 NLPCalendar component integration
+- 🎨 Beautiful UI with example inputs
+- ⚡ Hot reload and fast refresh enabled
+
+## 📋 Prerequisites
+
+### For All Platforms
+- Node.js (v16 or higher)
+- npm or yarn
+- Watchman (macOS/Linux)
+
+### For iOS (macOS only)
+- Xcode (latest version)
+- CocoaPods: `sudo gem install cocoapods`
+- iOS Simulator (included with Xcode)
+
+### For Android
+- Android Studio
+- Android SDK (API level 21 or higher)
+- Java Development Kit (JDK) 11 or higher
+- Android Emulator or physical device
+
+## 🚀 Quick Start
+
+### 1. Install Dependencies
+
+```bash
+cd RNDemoApp
+npm install
+```
+
+### 2. Run on iOS (macOS only)
+
+```bash
+# Install iOS dependencies
+cd ios
+pod install
+cd ..
+
+# Run the app
+npm run ios
+
+# Or specify a simulator
+npx react-native run-ios --simulator="iPhone 15"
+```
+
+### 3. Run on Android
+
+```bash
+# Start Metro bundler
+npm start
+
+# In another terminal, run on Android
+npm run android
+```
+
+## 📱 What You'll See
+
+The app includes:
+- **Live text input** - Type natural language events
+- **Real-time parsing** - See events appear as you type
+- **Quick examples** - Tap buttons to load example inputs
+- **Event display** - Beautiful calendar event cards
+- **Error handling** - Clear error messages when parsing fails
+
+## 🎨 Example Natural Language Inputs
+
+Try these in the app:
+
+```
+Meeting tomorrow at 3pm
+Call John on January 15
+Vacation from June 1 to June 10
+Dentist next Monday
+Team standup today
+Conference next week
+Birthday party next Friday
+```
+
+## 🏗️ Project Structure
+
+```
+RNDemoApp/
+├── android/                 # Android native code
+│   ├── app/
+│   │   ├── build.gradle    # App-level Gradle config
+│   │   └── src/main/       # Java/Kotlin source
+│   └── build.gradle        # Project-level Gradle config
+├── ios/                     # iOS native code
+│   ├── RNDemoApp/
+│   │   ├── AppDelegate.h
+│   │   ├── AppDelegate.mm
+│   │   └── Info.plist
+│   └── Podfile             # CocoaPods dependencies
+├── App.tsx                  # Main app component
+├── index.js                 # App entry point
+├── package.json            # Dependencies and scripts
+├── metro.config.js         # Metro bundler config
+├── babel.config.js         # Babel config
+└── tsconfig.json           # TypeScript config
+```
+
+## 🔧 Available Scripts
+
+```bash
+npm start          # Start Metro bundler
+npm run android    # Run on Android
+npm run ios        # Run on iOS
+npm run lint       # Run ESLint
+npm test           # Run tests
+```
+
+## 🐛 Troubleshooting
+
+### Metro Bundler Issues
+
+```bash
+# Clear Metro cache
+npm start -- --reset-cache
+```
+
+### iOS Build Fails
+
+```bash
+# Clean and reinstall
+cd ios
+rm -rf Pods Podfile.lock
+pod install
+cd ..
+```
+
+### Android Build Fails
+
+```bash
+# Clean Android build
+cd android
+./gradlew clean
+cd ..
+```
+
+### Port Already in Use
+
+```bash
+# Kill process on port 8081
+npx react-native start --port 8082
+```
+
+## 📚 Component Details
+
+The app uses the NLPCalendar component from `../react-native/src/`. It imports:
+
+- `parseNaturalLanguage` - Pure function for parsing text
+- `EventList` - Component for displaying events
+- `ErrorDisplay` - Component for showing errors
+
+### How It Works
+
+1. User types natural language text
+2. Text is parsed by `parseNaturalLanguage()` function
+3. Parser returns structured events and errors
+4. Events are displayed in a scrollable list
+5. Errors are shown if parsing fails
+
+## 🎨 Customization
+
+### Change App Name
+
+1. Edit `app.json` - change `displayName`
+2. iOS: Edit `ios/RNDemoApp/Info.plist` - CFBundleDisplayName
+3. Android: Edit `android/app/src/main/res/values/strings.xml`
+
+### Change Bundle ID
+
+1. iOS: Edit `ios/RNDemoApp.xcodeproj/project.pbxproj`
+2. Android: Edit `android/app/build.gradle` - applicationId
+
+### Modify UI
+
+Edit `App.tsx` to customize:
+- Styling (colors, fonts, spacing)
+- Layout and components
+- Example inputs
+- Event display format
+
+## 🔗 Related Documentation
+
+- [React Native Documentation](https://reactnative.dev/)
+- [NLPCalendar API](../react-native/README.md)
+- [Main Repository README](../README.markdown)
+- [Setup Guide](../GETTING_STARTED.md)
+- [FAQ](../FAQ.md)
+
+## ⚠️ Important Notes
+
+### Debug vs Release
+
+This app is configured for **debug mode** by default:
+- Uses debug keystore for Android
+- Connects to Metro bundler
+- Includes developer tools
+
+For production, you'll need to:
+1. Generate release keystores
+2. Configure signing
+3. Build release APK/IPA
+
+### New Architecture
+
+The app uses React Native's traditional architecture. To enable the New Architecture:
+- Edit `android/gradle.properties` - set `newArchEnabled=true`
+- Edit `ios/Podfile` - enable Fabric
+
+## 🆘 Need Help?
+
+- Check the [FAQ](../FAQ.md)
+- Read [GETTING_STARTED.md](../GETTING_STARTED.md)
+- Open an issue on GitHub
+
+## 📄 License
+
+Same as parent project - BSD-2-Clause
+
+---
+
+**Ready to run? Just follow the Quick Start above!** 🚀
