@@ -1,24 +1,12 @@
 /**
- * NLPCalendar Demo App
+ * Simple NLPCalendar Demo
  * 
- * A complete React Native CLI app demonstrating the NLPCalendar component.
+ * This is an alternative, simpler implementation showing how to use
+ * the NLPCalendar component directly without manual parsing.
  * 
- * This demo shows MANUAL PARSING approach using the exported utilities:
- * - parseNaturalLanguage: Parse text into events
- * - EventList: Display the parsed events
- * - ErrorDisplay: Show any parsing errors
- * 
- * For the simpler approach, you can use the NLPCalendar component directly:
- * 
- *   import { NLPCalendar } from '../react-native';
- *   
- *   <NLPCalendar 
- *     text="Meeting tomorrow at 3pm"
- *     onEventsChange={(events) => console.log(events)}
- *     onError={(errors) => console.log(errors)}
- *   />
- * 
- * This demo uses manual parsing to show more UI customization options.
+ * To use this version:
+ * 1. Rename this file to App.tsx (backup the original first)
+ * 2. Or import and use this component from index.js
  */
 
 import React, { useState } from 'react';
@@ -34,12 +22,8 @@ import {
   useColorScheme,
 } from 'react-native';
 
-// Import from the NLPCalendar library public API
-import { 
-  parseNaturalLanguage, 
-  EventList, 
-  ErrorDisplay 
-} from '../react-native';
+// Import the NLPCalendar component - the simplest way!
+import { NLPCalendar, type CalendarEvent } from '../react-native';
 
 // Example inputs for quick testing
 const EXAMPLE_INPUTS = [
@@ -51,17 +35,28 @@ const EXAMPLE_INPUTS = [
   'Conference next week',
 ];
 
-function App(): JSX.Element {
+function AppSimple(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [text, setText] = useState(
     'Meeting tomorrow at 3pm\nCall on January 15\nVacation from June 1 to June 10'
   );
-
-  const parseResult = parseNaturalLanguage(text);
-  const { events, errors } = parseResult;
+  const [eventCount, setEventCount] = useState(0);
+  const [errorCount, setErrorCount] = useState(0);
 
   const loadExample = (example: string) => {
     setText(example);
+  };
+
+  const handleEventsChange = (events: CalendarEvent[]) => {
+    setEventCount(events.length);
+    console.log('Events updated:', events);
+  };
+
+  const handleError = (errors: string[]) => {
+    setErrorCount(errors.length);
+    if (errors.length > 0) {
+      console.log('Parsing errors:', errors);
+    }
   };
 
   const backgroundStyle = {
@@ -80,11 +75,16 @@ function App(): JSX.Element {
         <View style={styles.header}>
           <Text style={styles.title}>📅 NLP Calendar Demo</Text>
           <Text style={styles.subtitle}>
-            Enter events in natural language
+            Simple component usage example
           </Text>
-          {events.length > 0 && (
+          {eventCount > 0 && (
             <Text style={styles.eventCount}>
-              {events.length} event{events.length !== 1 ? 's' : ''} found
+              {eventCount} event{eventCount !== 1 ? 's' : ''} found
+            </Text>
+          )}
+          {errorCount > 0 && (
+            <Text style={styles.errorCount}>
+              {errorCount} error{errorCount !== 1 ? 's' : ''}
             </Text>
           )}
         </View>
@@ -120,10 +120,13 @@ function App(): JSX.Element {
           </ScrollView>
         </View>
 
-        {/* Events Display */}
+        {/* NLPCalendar Component - Just pass the text! */}
         <ScrollView style={styles.scrollView}>
-          <ErrorDisplay errors={errors} />
-          <EventList events={events} />
+          <NLPCalendar
+            text={text}
+            onEventsChange={handleEventsChange}
+            onError={handleError}
+          />
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -154,6 +157,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#fff',
     marginTop: 8,
+    fontWeight: '600',
+  },
+  errorCount: {
+    fontSize: 12,
+    color: '#ffcc00',
+    marginTop: 4,
     fontWeight: '600',
   },
   inputContainer: {
@@ -202,4 +211,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default AppSimple;

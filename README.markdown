@@ -16,6 +16,10 @@ This repository now includes a React Native component that parses natural langua
 **NEW!** We now have a complete React Native CLI app with android/ios folders ready to run:
 
 ```bash
+# Install dependencies for the library first
+npm install
+
+# Then set up and run the demo app
 cd RNDemoApp
 npm install
 
@@ -26,6 +30,8 @@ npm run ios
 # For Android
 npm run android
 ```
+
+**Note:** The demo app imports from the parent library, so make sure you run `npm install` in the root directory first!
 
 See [RNDemoApp/README.md](RNDemoApp/README.md) for full instructions!
 

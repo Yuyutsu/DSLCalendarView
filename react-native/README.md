@@ -155,13 +155,64 @@ export default function App() {
 
 ## API
 
-### Props
+### NLPCalendar Component (Recommended)
+
+The simplest way to use the library is with the main component:
+
+```tsx
+import { NLPCalendar } from 'dslcalendarview-react-native';
+
+<NLPCalendar 
+  text="Meeting tomorrow" 
+  onEventsChange={(events) => console.log(events)}
+/>
+```
+
+#### Props
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|
 | `text` | `string` | Yes | Natural language text to parse |
 | `onEventsChange` | `(events: CalendarEvent[]) => void` | No | Callback when events are parsed |
 | `onError` | `(errors: string[]) => void` | No | Callback when parsing errors occur |
+
+### Exported Utilities (Advanced)
+
+For custom implementations, you can import individual pieces:
+
+```tsx
+import { 
+  parseNaturalLanguage,  // Parser function
+  EventList,             // Event display component
+  EventItem,             // Individual event component
+  ErrorDisplay,          // Error display component
+  type CalendarEvent,    // TypeScript types
+  type ParseResult
+} from 'dslcalendarview-react-native';
+```
+
+#### Manual Parsing Example
+
+```tsx
+import { parseNaturalLanguage, EventList, ErrorDisplay } from 'dslcalendarview-react-native';
+
+function MyCustomCalendar({ text }: { text: string }) {
+  const { events, errors } = parseNaturalLanguage(text);
+  
+  return (
+    <>
+      <ErrorDisplay errors={errors} />
+      <EventList events={events} />
+    </>
+  );
+}
+```
+
+This allows you to:
+- Build custom UIs around the parser
+- Use only the parsing logic
+- Create your own event display components
+- Integrate with other calendar libraries
 
 ### Types
 

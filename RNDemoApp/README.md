@@ -38,7 +38,14 @@ This is a **full React Native CLI project** with android and ios folders, ready 
 
 ### 1. Install Dependencies
 
+**Important:** The demo app uses the NLPCalendar library from the parent directory. You need to install dependencies for both:
+
 ```bash
+# From the repository root
+cd DSLCalendarView
+npm install
+
+# Then install demo app dependencies
 cd RNDemoApp
 npm install
 ```
